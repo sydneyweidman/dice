@@ -1,0 +1,10 @@
+* Environemnt
+#+BEGIN_SRC emacs-lisp :results none
+(let 
+    ((proj "dice")
+     (dsdir "/home/sweidman/working/dice"))
+  (venv-workon proj)
+  (rope-open-project proj)
+  (cd dsdir)
+  )
+#+END_SRC
