@@ -1,3 +1,4 @@
+import sys
 import random
 
 
@@ -17,6 +18,7 @@ class Die(object):
 
     def __init__(self, num_sides=6):
         """Initialize the class"""
+        random.seed()
         self.side = 0
         self.num_sides = num_sides
 
@@ -28,9 +30,40 @@ class Die(object):
         return self.side
 
 
-def test(name):
+def roll(count=2):
+    """Roll count number of 6-sided dice and return a tuple of the value
+    rolled for each die"""
+    # Generate a list of dice
+    if count == 1:
+        print "Rolling one die"
+    else:
+        print "Rolling {0} dice".format(count)
+    dice = [Die() for i in range(count)]
+    total = 0
+    idx = 0
+    for d in dice:
+        d.throw()
+        idx += 1
+        print "Die {} was {}".format(idx, d.get_value())
+        total += d.get_value()
+    if count == 2 and dice[0].get_value() == dice[1].get_value():
+        print "Doubles!!"
+    print "Total rolled is {}".format(total)
+    return tuple([d.get_value() for d in dice])
+
+
+def test(module):
     import doctest
-    doctest.testmod(name)
+    doctest.testmod(module, verbose=True)
+
+
+def run(action):
+    if 'roll' in sys.argv:
+        roll()
+    elif 'test' in sys.argv:
+        import die
+        test(die)
+
 
 if __name__ == '__main__':
-    test('die')
+    run()
