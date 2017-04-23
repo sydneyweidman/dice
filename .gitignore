@@ -60,7 +60,7 @@ coverage.xml
 /*/settings/dev.py
 /*/settings/prod.py
 settings/active.py
-
+TAGS
 # Sphinx documentation
 docs/_build/
 
