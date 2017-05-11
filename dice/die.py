@@ -66,4 +66,4 @@ def run(action):
 
 
 if __name__ == '__main__':
-    run()
+    run(sys.argv[1])
