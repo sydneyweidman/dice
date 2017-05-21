@@ -9,5 +9,5 @@ upgrade:
 	pip install --upgrade -r requirements-to-freeze.txt && \
 	pip freeze > requirements.txt
 
-tags: TAGS
+tags:
 	${HOME}/bin/pyfiles.py | xargs etags -a
