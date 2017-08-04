@@ -18,9 +18,12 @@ class Die(object):
 
     def __init__(self, num_sides=6):
         """Initialize the class"""
+        super(Die, self).__init__()
         random.seed()
         self.side = 0
         self.num_sides = num_sides
+        self.log.info('Initialized Die object...')
+        self.log.info('with values: {}'.format(locals()))
 
     def throw(self):
         """Simulate throwing a die"""
