@@ -12,6 +12,7 @@ class LoggedComponent(object):
     def __init__(self, configfile=LOGFILE, logger_name=__name__):
         self.configfile = configfile
         logging.config.fileConfig(self.configfile)
+        logging.info("Loaded logging config file {}".format(self.configfile))
         self.logger_name = logger_name
         self.log = logging.getLogger(self.logger_name)
 
@@ -21,7 +22,6 @@ class Die(LoggedComponent):
 
     >>> from dice import die
     >>> d = die.Die()
-    Loaded logging config file /home/sweidman/.uwlib/xlreader/log.ini
     >>> d.num_sides == 6
     True
     >>> d.throw()

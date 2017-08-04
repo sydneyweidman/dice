@@ -3,7 +3,6 @@ from dice import die
 
 
 class TestDie(unittest.TestCase):
-
     def setUp(self):
         self.instance = die.Die()
 
@@ -26,10 +25,14 @@ class TestDie(unittest.TestCase):
         __name__ == '__main__'
 
     def test_roll(self):
-        """Roll should return a number between 1 and 12 inclusive"""
+        """Roll should return a number 1 <= x <= 12"""
         for d in die.roll():
             self.assertIn(d, range(1, 13))
 
     def test_run(self):
         """Test the 'test' action"""
         die.run('test')
+
+    def test_logging(self):
+        """Make sure the logger is properly initialized"""
+        self.instance.log.warn("TEST")
