@@ -4,7 +4,7 @@ execfile('dice/version.py')
 
 setup(
     name="dice",
-    version="0.1.1",
+    version=__version__,
     packages=["dice"],
     test_suite='dice.tests',
     entry_points={'console_scripts': ['roll=dice.command:main']})

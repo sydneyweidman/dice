@@ -3,18 +3,15 @@ import sys
 import random
 import logging
 import logging.config
-from pkg_resources import resource_filename, Requirement
+from pkg_resources import resource_filename
 
-LOG_CONFIG = resource_filename(Requirement.parse("resource/uwlib"), 'ini')
+LOGFILE = resource_filename("dice.resources", 'log.ini')
 
 
 class LoggedComponent(object):
-    def __init__(self,
-                 configfile='~/.uwlib/xlreader/log.ini',
-                 logger_name=__name__):
-        self.configfile = os.path.expanduser(configfile)
+    def __init__(self, configfile=LOGFILE, logger_name=__name__):
+        self.configfile = configfile
         logging.config.fileConfig(self.configfile)
-        print "Loaded logging config file {}".format(self.configfile)
         self.logger_name = logger_name
         self.log = logging.getLogger(self.logger_name)
 
