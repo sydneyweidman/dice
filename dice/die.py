@@ -1,12 +1,30 @@
+import os
 import sys
 import random
+import logging
+import logging.config
+from pkg_resources import resource_filename, Requirement
+
+LOG_CONFIG = resource_filename(Requirement.parse("resource/uwlib"), 'ini')
 
 
-class Die(object):
+class LoggedComponent(object):
+    def __init__(self,
+                 configfile='~/.uwlib/xlreader/log.ini',
+                 logger_name=__name__):
+        self.configfile = os.path.expanduser(configfile)
+        logging.config.fileConfig(self.configfile)
+        print "Loaded logging config file {}".format(self.configfile)
+        self.logger_name = logger_name
+        self.log = logging.getLogger(self.logger_name)
+
+
+class Die(LoggedComponent):
     """A class to model a die in a board game
 
     >>> from dice import die
     >>> d = die.Die()
+    Loaded logging config file /home/sweidman/.uwlib/xlreader/log.ini
     >>> d.num_sides == 6
     True
     >>> d.throw()
