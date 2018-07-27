@@ -74,3 +74,5 @@ target/
 /resources/uwweb_uwsgi.pid
 /tests/*.xls
 livedata/
+/.projectile
+/.venv
