@@ -76,3 +76,8 @@ target/
 livedata/
 /.projectile
 /.venv
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+/cscope.out
