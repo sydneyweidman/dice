@@ -1,3 +1,5 @@
+# to run tests from within spacemacs: =SPC c c= and select "test"
+
 test:
 	nose2
 
