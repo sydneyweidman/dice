@@ -18,7 +18,7 @@ class TestDie(unittest.TestCase):
         for throw in range(100):
             self.instance.throw()
             val = self.instance.get_value()
-            self.assertIn(val, range(1, self.instance.num_sides + 1))
+            self.assertIn(val, list(range(1, self.instance.num_sides + 1)))
 
     def test_ifname_main(self):
         """Try to emulate calling from shell"""
@@ -27,7 +27,7 @@ class TestDie(unittest.TestCase):
     def test_roll(self):
         """Roll should return a number 1 <= x <= 12"""
         for d in die.roll():
-            self.assertIn(d, range(1, 13))
+            self.assertIn(d, list(range(1, 13)))
 
     def test_run(self):
         """Test the 'test' action"""

@@ -1,14 +1,10 @@
 # to run tests from within spacemacs: =SPC c c= and select "test"
 
 test:
-	nose2
+	pipenv run nose2
 
 init:
-	pip install -r requirements.txt
+	pipenv install
 
-upgrade:
-	pip install --upgrade -r requirements-to-freeze.txt && \
-	pip freeze > requirements.txt
-
-tags:
-	${HOME}/bin/pyfiles.py | xargs etags -a
+update:
+	pipenv update

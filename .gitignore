@@ -83,3 +83,4 @@ GTAGS
 /cscope.out
 *.anjuta
 /.anjuta_sym_db.db
+/dice/Pipfile.lock

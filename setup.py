@@ -1,6 +1,6 @@
 from setuptools import setup
 
-execfile('dice/version.py')
+exec(compile(open('dice/version.py').read(), 'dice/version.py', 'exec'))
 
 setup(
     name="dice",
