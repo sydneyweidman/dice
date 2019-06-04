@@ -52,8 +52,8 @@ def roll(count=2):
     """Roll count number of 6-sided dice and return a tuple of the value
     rolled for each die"""
     # Generate a list of dice
-    if count == 1:
-        print("Rolling one die")
+    if count < 1:
+        raise ValueError("You must have at least one die")
     else:
         print("Rolling {0} dice".format(count))
     dice = [Die() for i in range(count)]

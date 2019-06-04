@@ -11,6 +11,9 @@ class TestDie(unittest.TestCase):
         self.instance.throw()
         self.assertNotEqual(self.instance.side, 0)
 
+    def test_zero_raises_value_error(self):
+        self.assertRaises(ValueError, die.roll, 0)
+
     def test_get_value(self):
         """Get the value of the side in correct range"""
         val = self.instance.get_value()
