@@ -1,4 +1,3 @@
-import os
 import sys
 import random
 import logging
@@ -66,7 +65,7 @@ def roll(count=2):
         total += d.get_value()
     if count == 2 and dice[0].get_value() == dice[1].get_value():
         print("Doubles!!")
-    print("Total rolled is {}".format(total))
+    print("Total number rolled is {}".format(total))
     return tuple([d.get_value() for d in dice])
 
 
