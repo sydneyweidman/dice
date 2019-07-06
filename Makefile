@@ -1,10 +1,11 @@
 # to run tests from within spacemacs: =SPC c c= and select "test"
-
 test:
-	pipenv run nose2
-
+	pytest
+version:
+	echo $(PYENV_PYTHON) \
+  pyenv install 3.7.2
 init:
-	pipenv install
+	python setup.py install
 
 update:
-	pipenv update
+	pip3 install --upgrade

@@ -4,6 +4,7 @@ import logging
 import logging.config
 from pkg_resources import resource_filename
 
+
 LOGFILE = resource_filename("dice.resources", 'log.ini')
 
 
@@ -11,7 +12,7 @@ class LoggedComponent(object):
     def __init__(self, configfile=LOGFILE, logger_name=__name__):
         self.configfile = configfile
         logging.config.fileConfig(self.configfile)
-        logging.info("Loaded logging config file {}".format(self.configfile))
+        logging.info("Loaded logging config file %s", self.configfile)
         self.logger_name = logger_name
         self.log = logging.getLogger(self.logger_name)
 
@@ -37,7 +38,7 @@ class Die(LoggedComponent):
         self.side = 0
         self.num_sides = num_sides
         self.log.info('Initialized Die object...')
-        self.log.info('with values: {}'.format(locals()))
+        self.log.info('with values: %s', locals())
 
     def throw(self):
         """Simulate throwing a die"""
@@ -51,17 +52,21 @@ def roll(count=2):
     """Roll count number of 6-sided dice and return a tuple of the value
     rolled for each die"""
     # Generate a list of dice
+    try:
+        count = int(count)
+    except ValueError:
+        print("%s is not an integer" % count)
+        return -1
     if count < 1:
         raise ValueError("You must have at least one die")
-    else:
-        print("Rolling {0} dice".format(count))
+    print("Rolling {0} dice".format(count))
     dice = [Die() for i in range(count)]
     total = 0
     idx = 0
     for d in dice:
         d.throw()
         idx += 1
-        print("Die {} was {}".format(idx, d.get_value()))
+        d.log.info("Die {} was {}".format(idx, d.get_value()))
         total += d.get_value()
     if count == 2 and dice[0].get_value() == dice[1].get_value():
         print("Doubles!!")
@@ -69,18 +74,20 @@ def roll(count=2):
     return tuple([d.get_value() for d in dice])
 
 
+def main(count):
+    random.seed()
+    return roll(count)
+
+
 def test(module):
     import doctest
     doctest.testmod(module, verbose=True)
 
 
-def run(action):
-    if 'roll' in sys.argv:
-        roll()
-    elif 'test' in sys.argv:
-        from . import die
-        test(die)
-
-
 if __name__ == '__main__':
-    run(sys.argv[1])
+    USAGE = "die.py INT"
+    try:
+        dice = sys.argv[1]
+    except IndexError:
+        print(USAGE)
+    print(main(sys.argv[1]))
